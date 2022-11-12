@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "Epic-App",
+    "slug": "Epic-App",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "Epic-App"
+}
