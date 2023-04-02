@@ -1,17 +1,22 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect,useState} from 'react';
-import { StyleSheet, Text, View, TouchableHighlight,ImageBackground,Image,ScrollView} from 'react-native';
+import { StyleSheet, Text, View, TouchableHighlight,ImageBackground,Image,ScrollView,Linking} from 'react-native';
 
 export default function CryptoPrices() {
 
   //const [ name, setName ] = useState (  DEFAULTVALUE )
 
     const BaseURL = "https://api.coingecko.com/api/v3"
+    const WebsiteURL = "https://www.coingecko.com/en/coins/"
     const[coinList,setcoinList] = useState(["LOADING"])
     const[loading, setLoading]= useState(true)
     const[ImageList, setImageList] = useState(["LOADING"])
-    
+    const[WebNames,setWebNames] = useState(["LOADING"])
 
+    const OnPressWebsite = (name) =>{
+      Linking.openURL(WebsiteURL+name)
+    }
+    
     function NumberList() {
       const array = [1,2,3]
       const ListItems = array.map((x) => <Text>{x * 2}</Text>)
@@ -23,7 +28,7 @@ export default function CryptoPrices() {
     }
     function RenderList(){
     const ListItem =  loading? <Image source={require("../assets/Tate.gif")}></Image> :
-    coinList.map((x) => <TouchableHighlight style={styles.ButtonStyle}><Text style={styles.BoldText}>{x}</Text></TouchableHighlight>)
+    coinList.map((x) => <TouchableHighlight style={styles.ButtonStyle} onPress={() =>{Linking.openURL(WebsiteURL+x)}}><Text style={styles.BoldText}>{x}</Text></TouchableHighlight>)
     return(
       <View>{ListItem}</View>
       
@@ -46,7 +51,8 @@ export default function CryptoPrices() {
       const response = await fetch(BaseURL + "/search/trending");
       const list = await response.json();
       setImageList(list.coins.map((x) => x.item.thumb))
-      setcoinList(list.coins.map((x) => x.item.name))
+      setcoinList(list.coins.map((x) => x.item.id))
+      //setWebsiteNames(list.coins.map((z) => z.item.id))
       setLoading(false)
       console.log(list.coins.map((x) => x.item.thumb))
 

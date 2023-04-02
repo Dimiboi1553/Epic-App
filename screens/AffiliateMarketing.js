@@ -3,6 +3,7 @@ import React from 'react';
 import { StyleSheet, Text, View, TouchableHighlight,ImageBackground,Image,Linking } from 'react-native';
 
 export default function AffiliateMarketing() {
+  const BaseAmazonURL = "https://www.amazon.de/-/en/gp/bestsellers/?ref_=nav_em_cs_bestsellers_0_1_1_2"
 
   return (
     <ImageBackground 
@@ -17,12 +18,10 @@ export default function AffiliateMarketing() {
       <View style={styles.Titlebg}>
         <Text style={styles.TitleText}>Affiliate Marketing🚀</Text>
       </View>
-      <View style={{margin: 150}}>
-      <TouchableHighlight style={styles.ButtonStyle}onPress={{}}><Text style={styles.BoldText}>ANDREW TATE</Text></TouchableHighlight>
-      <TouchableHighlight style={styles.ButtonStyle} onPress={{}}><Text style={styles.BoldText}></Text></TouchableHighlight>
-      <TouchableHighlight style={styles.ButtonStyle} onPress={{}}><Text style={styles.BoldText}></Text></TouchableHighlight>
+      <TouchableHighlight style={styles.ButtonStyle}onPress={() => {Linking.openURL(BaseAmazonURL)}}><Text style={styles.BoldText}>FIND BEST SELLING PRODUCTS!</Text></TouchableHighlight>
+      {/* <TouchableHighlight style={styles.ButtonStyle} onPress={{}}><Text style={styles.BoldText}></Text></TouchableHighlight>
+      <TouchableHighlight style={styles.ButtonStyle} onPress={{}}><Text style={styles.BoldText}></Text></TouchableHighlight> */}
 
-      </View>
     </ImageBackground>
     
   );
@@ -34,6 +33,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    width: "100%"
   },
   logoContainer: {
     position: 'absolute',
@@ -46,14 +46,15 @@ const styles = StyleSheet.create({
 
 },
   ButtonStyle: {
-    width: "60%",
+    width: "90%",
     marginBottom: 75,
-    height: 60,
+    height: 75,
     backgroundColor: "#2596be",
     alignItems: 'center',
     textShadowColor: 'white',
     borderRadius: 10,
-    paddingVertical: 10
+    paddingVertical: 10,
+    marginTop: 80
 
 },
 BoldText: {
